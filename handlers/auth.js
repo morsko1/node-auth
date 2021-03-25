@@ -13,7 +13,7 @@ passport.use(
       secretOrKey: 'TOP_SECRET',
       jwtFromRequest: cookieExtractor
     },
-    async (token, done) => {
+    (token, done) => {
       try {
         return done(null, token.user);
       } catch (error) {
