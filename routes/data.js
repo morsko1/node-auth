@@ -1,13 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
+const dataController = require('../controllers/data');
 
-router.get(
-  '/data',
-  passport.authenticate('jwt', { session: false }),
-  (req, res, next) => {
-    res.send({data: 'data'});
-  }
-);
+router.get('/data', dataController);
 
 module.exports = router;
