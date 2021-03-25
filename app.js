@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 
 const routes = require('./routes');
 const errorHandler = require('./handlers/error-handler');
+
+// init environment variables
+require('dotenv').config();
+
 require('./handlers/auth');
 
 mongoose.connect(
@@ -28,7 +32,7 @@ app.use(cookieParser());
 app.use(routes);
 app.use(errorHandler);
 
-const port = 3333;
+const port = process.env.PORT || 7777;
 app.listen(port, () => {
   console.log(`listen on ${port}`);
 });
