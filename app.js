@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 
+const logger = require('./logger');
 const routes = require('./routes');
 const errorHandler = require('./handlers/error-handler');
 
@@ -16,7 +16,8 @@ require('./db');
 
 const app = express();
 
-app.use(logger('dev'));
+app.use(logger.logDev);
+app.use(logger.writeLogs);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
