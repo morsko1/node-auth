@@ -1,7 +1,7 @@
-const passport = require('passport');
+const { checkAuth } = require('../utils');
 
 const dataController = [
-  passport.authenticate('jwt', { session: false }),
+  checkAuth,
   (req, res) => {
     res.send({data: 'data'});
   }

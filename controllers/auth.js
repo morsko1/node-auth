@@ -1,5 +1,6 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const { checkAuth } = require('../utils');
 
 const registerController = [
   passport.authenticate('register', { session: false }),
@@ -49,7 +50,7 @@ const loginController = (req, res, next) => {
 };
 
 const logoutController = [
-  passport.authenticate('jwt', { session: false }),
+  checkAuth,
   (req, res) => {
     req.logout();
     res.clearCookie('token');
