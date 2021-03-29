@@ -48,4 +48,13 @@ const loginController = (req, res, next) => {
   )(req, res, next);
 };
 
-module.exports = { registerController, loginController };
+const logoutController = [
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    req.logout();
+    res.clearCookie('token');
+    res.send({message: 'Logout successfully'});
+  }
+];
+
+module.exports = { registerController, loginController, logoutController };
